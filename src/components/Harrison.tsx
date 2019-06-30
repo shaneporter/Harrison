@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 
 import { LocationService } from '../services/LocationService';
 import { SunService } from '../services/SunService';
 import { HarrisonService } from  '../services/HarrisonService';
+import Intro from './Intro';
+import Progress from './Progress';
 
 type IHarrisonState = {
   sunrise: string,
@@ -12,7 +14,10 @@ type IHarrisonState = {
   error?: Error,
 }
 
-const Harrison: React.FC = () => {
+interface HarrisonProps {
+}
+
+const Harrison: React.FC<HarrisonProps> = ({}) => {
 
   // initialise the state:
   const [sunTimes, setSunTimes] = useState<IHarrisonState>({
@@ -22,9 +27,15 @@ const Harrison: React.FC = () => {
     fetched: false
   });
 
+  const onStart = () => {
+    setSunTimes({...sunTimes, fetching: true});
+    fetch();
+  }
+
   const fetch = async () => {
 
     try {
+
 
       // @TODO: DI here for composition root:
       let harrisonService:HarrisonService = new HarrisonService(
@@ -52,7 +63,14 @@ const Harrison: React.FC = () => {
     }
   }
 
-  fetch();
+  if(sunTimes.fetched) {
+    // @TODO: return sun
+  } else if(sunTimes.error) {
+    // @TODO: return error
+  } else {
+    // @TODO: return progress/intro
+    return sunTimes.fetching ? <Progress /> : <Intro {...{onStart}} /> 
+  }
 
   return (
     <div>{JSON.stringify(sunTimes, null, 2)}</div>

@@ -1,5 +1,6 @@
 import { ILocationService } from './LocationService';
 import { ISunService } from './SunService';
+import moment from 'moment';
 
 interface SunTimes {
   readonly sunrise: string;
@@ -14,6 +15,7 @@ export class HarrisonService implements IHarrisonService {
 
   _locationService: ILocationService;
   _sunService: ISunService;
+  toLocal = (utcTime:string) => moment.utc(utcTime).local().format('HH:mm');
 
   constructor(locationService: ILocationService, sunService: ISunService) {
     this._locationService = locationService;
@@ -29,8 +31,8 @@ export class HarrisonService implements IHarrisonService {
     const { sunrise, sunset } = data.results;
 
     return {
-      sunrise,
-      sunset
+      sunrise: this.toLocal(sunrise),
+      sunset: this.toLocal(sunset)
     };
   }
 }
