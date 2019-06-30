@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Progress: React.FC = () => {
+export interface ProgressProps {
+
+}
+
+const Progress: React.FC<ProgressProps> = () => {
   return (
     <div>Getting your sun times</div>
   );

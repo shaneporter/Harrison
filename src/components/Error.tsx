@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Error: React.FC = () => {
+export interface ErrorProps {
+
+}
+
+const Error: React.FC<ErrorProps> = () => {
   return (
     <div>error</div>
   );

@@ -7,12 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Open source libraries utilised:
 
-- axios for https://api.sunrise-sunset.org http request
-
-
-
-
-
+- [https://github.com/axios/axios](axios) for https://api.sunrise-sunset.org http request
+- [https://momentjs.com/](momentjs) for time conversion
 
 ## Available Scripts
 

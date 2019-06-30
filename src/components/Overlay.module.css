@@ -1,0 +1,14 @@
+.overlay {
+  height: 100vh;
+  background: #070b34;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.overlayContent {
+  height: 25vh;
+  width: 25vw;
+  color: white;
+}

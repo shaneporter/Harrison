@@ -5,6 +5,7 @@ import { SunService } from '../services/SunService';
 import { HarrisonService } from  '../services/HarrisonService';
 import Intro from './Intro';
 import Progress from './Progress';
+import Overlay from './Overlay';
 
 type IHarrisonState = {
   sunrise: string,
@@ -69,7 +70,9 @@ const Harrison: React.FC<HarrisonProps> = ({}) => {
     // @TODO: return error
   } else {
     // @TODO: return progress/intro
-    return sunTimes.fetching ? <Progress /> : <Intro {...{onStart}} /> 
+    return <Overlay>
+      { sunTimes.fetching ? <Progress /> : <Intro {...{onStart}} /> }
+    </Overlay> 
   }
 
   return (
