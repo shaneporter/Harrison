@@ -1,0 +1,110 @@
+.stage { 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stage > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sky {
+  background: lightskyblue;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+
+.earth {
+  background: forestgreen;
+  padding-top: 10px;
+  z-index: 100;
+}
+
+.time {
+  font-size: 2.8em;
+  width: 200px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  opacity: 0;
+}
+
+.sky .time {
+  animation: skyFadeIn 4s forwards 0.75s;
+}
+
+.earth .time {
+  animation: earthFadeIn 2s forwards 3s;
+}
+
+.sky {
+  animation: sky 5s forwards;
+}
+
+.earth {
+  animation: earth 5s forwards;
+}
+
+.time span {
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.4em;
+  display: block;
+}
+
+.sun {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  animation: rise 5s ease-in-out;
+  z-index: 99;
+}
+
+@keyframes sky {
+  0% { background: #070b34; }
+  50% { background: lightblue; }
+  100% { background: #070b34; }
+}
+
+@keyframes earth {
+  0% { background: #070b34; }
+  50% { background: forestgreen; }
+  100% { background: #070b34; }
+}
+
+@keyframes earthFadeIn {
+  0% { opacity: 0; color: white; }
+  100% { opacity: 1; color: white; }
+}
+
+@keyframes skyFadeIn {
+  0% { opacity: 0; }
+  30% { opacity: 1;  }
+  50% { color: black; }
+  100%   { opacity: 1; color: white; }
+}
+
+@keyframes rise {
+  0% {
+    top: 110%;
+    transform: scale(0.5);
+  }
+  30% {
+    top: 0%;
+    transform: scale(1);
+    background-color: gold;
+  }
+  65% {
+    background-color: orange;
+    transform: scale(0.75);
+  }
+  100% {
+    background: red;
+    top: 110%;
+    transform: scale(0.5);
+  }
+}

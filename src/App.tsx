@@ -5,9 +5,7 @@ import Sun from './components/Sun';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <Harrison sun={(sunrise, sunset) => (<div>** {sunrise} ** {sunset}></div>)} />
-    </div>
+    <Harrison sun={(sunrise, sunset) => (<Sun sunrise={sunrise} sunset={sunset} />)} />
   );
 }
 
