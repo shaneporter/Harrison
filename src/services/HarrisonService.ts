@@ -7,7 +7,7 @@ interface SunTimes {
 }
 
 export interface IHarrisonService {
-  getSunTimes():SunTimes; 
+  getSunTimes():Promise<SunTimes>; 
 }
 
 export class HarrisonService implements IHarrisonService {
@@ -20,14 +20,17 @@ export class HarrisonService implements IHarrisonService {
     this._sunService = sunService;
   }
 
-  getSunTimes() {
-    
-    // @TODO: make appropriate calls:
-    let times:SunTimes = { 
-      sunrise: '4:00:00AM',
-      sunset: '9:00:00PM',
-    }
+  async getSunTimes() {
+
+    let { coords } = await this._locationService.getCurrentPosition();
+
+    let { data } = await this._sunService.getSunTimes(coords.latitude, coords.longitude);
   
-    return times;
+    const { sunrise, sunset } = data.results;
+
+    return {
+      sunrise,
+      sunset
+    };
   }
 }

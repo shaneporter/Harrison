@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { LocationService } from './services/LocationService';
@@ -7,12 +7,27 @@ import { HarrisonService } from  './services/HarrisonService';
 
 const App: React.FC = () => {
 
-  // @TODO: DI here for composition root:
-  let harrisonService:HarrisonService = new HarrisonService(
-    new LocationService(), new SunService()
-  );
+  const [sunTimes, setSunTimes] = useState({});
 
-  const sunTimes = harrisonService.getSunTimes();
+  const fetch = async () => {
+
+    try {
+
+      // @TODO: DI here for composition root:
+      let harrisonService:HarrisonService = new HarrisonService(
+        new LocationService(), new SunService()
+      );
+
+      const res = await harrisonService.getSunTimes();
+
+      setSunTimes(res);
+
+    } catch(e) {
+      console.error('TODO: handle error');
+    }
+  }
+
+  fetch();
 
   return (
     <div>{JSON.stringify(sunTimes, null, 2)}</div>
