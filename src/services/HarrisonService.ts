@@ -23,7 +23,6 @@ export class HarrisonService implements IHarrisonService {
   }
 
   async getSunTimes() {
-
     let { coords } = await this._locationService.getCurrentPosition();
 
     let { data } = await this._sunService.getSunTimes(coords.latitude, coords.longitude);

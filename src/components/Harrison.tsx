@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 
 import { LocationService } from '../services/LocationService';
 import { SunService } from '../services/SunService';
@@ -17,9 +17,10 @@ type IHarrisonState = {
 }
 
 interface HarrisonProps {
+  sun(sunrise: string, sunset: string): ReactElement;
 }
 
-const Harrison: React.FC<HarrisonProps> = ({}) => {
+const Harrison: React.FC<HarrisonProps> = ({sun}) => {
 
   // initialise the state:
   const [sunTimes, setSunTimes] = useState<IHarrisonState>({
@@ -66,19 +67,14 @@ const Harrison: React.FC<HarrisonProps> = ({}) => {
   }
 
   if(sunTimes.fetched) {
-    // @TODO: return sun
+    return sun(sunTimes.sunrise, sunTimes.sunset);
   } else if(sunTimes.error) {
-    return <Overlay><Error /></Overlay>
+    return <Overlay><Error message={sunTimes.error.message} /></Overlay>
   } else {
-    // @TODO: return progress/intro
     return <Overlay>
       { sunTimes.fetching ? <Progress /> : <Intro {...{onStart}} /> }
     </Overlay>;
   }
-
-  return (
-    <div>{JSON.stringify(sunTimes, null, 2)}</div>
-  );
 }
 
 export default Harrison;

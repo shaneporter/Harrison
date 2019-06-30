@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Progress.module.css';
 import sun from '../sun.svg';
-export interface ProgressProps {
+export interface ProgressProps {  
 
 }
 
