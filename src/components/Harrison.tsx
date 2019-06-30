@@ -1,10 +1,11 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState } from 'react';
 
 import { LocationService } from '../services/LocationService';
 import { SunService } from '../services/SunService';
 import { HarrisonService } from  '../services/HarrisonService';
 import Intro from './Intro';
 import Progress from './Progress';
+import Error from './Error';
 import Overlay from './Overlay';
 
 type IHarrisonState = {
@@ -67,12 +68,12 @@ const Harrison: React.FC<HarrisonProps> = ({}) => {
   if(sunTimes.fetched) {
     // @TODO: return sun
   } else if(sunTimes.error) {
-    // @TODO: return error
+    return <Overlay><Error /></Overlay>
   } else {
     // @TODO: return progress/intro
     return <Overlay>
       { sunTimes.fetching ? <Progress /> : <Intro {...{onStart}} /> }
-    </Overlay> 
+    </Overlay>;
   }
 
   return (

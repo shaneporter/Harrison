@@ -1,12 +1,15 @@
 import React from 'react';
-
+import styles from './Progress.module.css';
+import sun from '../sun.svg';
 export interface ProgressProps {
 
 }
 
 const Progress: React.FC<ProgressProps> = () => {
   return (
-    <div>Getting your sun times</div>
+    <div>
+      <img src={sun} className={styles.sunLoader} alt="Loading" />
+    </div>
   );
 }
 
