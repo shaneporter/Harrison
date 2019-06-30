@@ -4,9 +4,23 @@ import { LocationService } from '../services/LocationService';
 import { SunService } from '../services/SunService';
 import { HarrisonService } from  '../services/HarrisonService';
 
+type IHarrisonState = {
+  sunrise: string,
+  sunset: string,
+  fetching: boolean,
+  fetched: boolean,
+  error?: Error,
+}
+
 const Harrison: React.FC = () => {
 
-  const [sunTimes, setSunTimes] = useState({});
+  // initialise the state:
+  const [sunTimes, setSunTimes] = useState<IHarrisonState>({
+    sunrise: '',
+    sunset: '',
+    fetching: false,
+    fetched: false
+  });
 
   const fetch = async () => {
 
@@ -19,10 +33,22 @@ const Harrison: React.FC = () => {
 
       const res = await harrisonService.getSunTimes();
 
-      setSunTimes(res);
+      setSunTimes({
+        sunrise: res.sunrise,
+        sunset: res.sunset,
+        fetching: false,
+        fetched: true,
+      });
 
     } catch(e) {
-      console.error('TODO: handle error');
+
+      setSunTimes({
+        sunrise: '',
+        sunset: '',
+        fetched: false,
+        fetching: false,
+        error: e
+      })
     }
   }
 
