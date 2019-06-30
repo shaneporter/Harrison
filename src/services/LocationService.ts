@@ -2,7 +2,7 @@ export interface ILocationService {
   getCurrentPosition(): Promise<Position>;
 };
 
-export class GeoService implements ILocationService {
+export class LocationService implements ILocationService {
   async getCurrentPosition():Promise<Position> {
 
     const options = {};
