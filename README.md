@@ -5,6 +5,15 @@ Web App that displays sunrise and sunset at the user's location
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Open source libraries utilised:
+
+- axios for https://api.sunrise-sunset.org http request
+
+
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
