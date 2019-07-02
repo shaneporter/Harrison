@@ -39,7 +39,6 @@ const Harrison: React.FC<HarrisonProps> = ({sun}) => {
 
     try {
 
-
       // @TODO: DI here for composition root:
       let harrisonService:HarrisonService = new HarrisonService(
         new LocationService(), new SunService()

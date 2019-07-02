@@ -25,9 +25,8 @@ export class HarrisonService implements IHarrisonService {
 
     let { coords } = await this._locationService.getCurrentPosition();
 
-    let { data } = await this._sunService.getSunTimes(coords.latitude, coords.longitude);
-  
-    const { sunrise, sunset } = data.results;
+    let sunResponse = await this._sunService.getSunTimes(coords.latitude, coords.longitude);  
+    const { sunrise, sunset } = sunResponse;
 
     return {
       sunrise: this.toLocal(sunrise),

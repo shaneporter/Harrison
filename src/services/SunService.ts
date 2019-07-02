@@ -1,12 +1,18 @@
-import axios, { AxiosResponse } from 'axios';
-
 export interface ISunService {
   // @TODO: replace 'any' type:
-  getSunTimes(lat: number, lng: number): Promise<AxiosResponse<any>>;
+  getSunTimes(lat: number, lng: number): Promise<any>;
 }
 
 export class SunService implements ISunService {
   async getSunTimes(lat: number, lng: number) {
-    return axios.get(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`);
+
+    const res = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`);
+
+    const json = await res.json();
+
+    return {
+      sunrise: json.results.sunrise,
+      sunset: json.results.sunset
+    }
   }
 }
